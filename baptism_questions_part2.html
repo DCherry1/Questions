@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baptism Questions - Part 2: Christian Living</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            min-height: 700px;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(180deg, #6a4c93 0%, #8b5a8c 100%);
+            color: white;
+            padding: 20px 0;
+            overflow-y: auto;
+            max-height: 700px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            padding: 0 15px;
+            color: #f8f9fa;
+            position: sticky;
+            top: 0;
+            background: linear-gradient(180deg, #6a4c93 0%, #8b5a8c 100%);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .tab-button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            color: #e9c46a;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            border-left: 4px solid transparent;
+            line-height: 1.3;
+        }
+
+        .tab-button:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-left-color: #e76f51;
+        }
+
+        .tab-button.active {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border-left-color: #f77f00;
+            font-weight: 600;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-title {
+            color: #6a4c93;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e76f51;
+        }
+
+        .scripture-block {
+            background: #f1f8e9;
+            border-left: 5px solid #8bc34a;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .scripture-reference {
+            font-weight: bold;
+            color: #689f38;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .scripture-text {
+            font-style: italic;
+            color: #2e7d32;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .explanation {
+            background: #fff8e1;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .explanation-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .explanation-text {
+            color: #ef6c00;
+            line-height: 1.6;
+        }
+
+        .personal-note {
+            background: #f3e5f5;
+            border-left: 5px solid #9c27b0;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .personal-note-title {
+            font-weight: bold;
+            color: #7b1fa2;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .personal-note-text {
+            color: #8e24aa;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .multiple-roles {
+            background: #e8f5e8;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .role-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        .role-text {
+            color: #388e3c;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .sin-list {
+            background: #ffebee;
+            border-left: 5px solid #f44336;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .sin-title {
+            font-weight: bold;
+            color: #c62828;
+            margin-bottom: 10px;
+        }
+
+        .sin-items {
+            color: #d32f2f;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin: 10px;
+            }
+
+            .sidebar {
+                width: 100%;
+                order: 2;
+                max-height: 300px;
+            }
+
+            .main-content {
+                padding: 20px;
+                order: 1;
+            }
+
+            .tab-button {
+                display: inline-block;
+                width: auto;
+                margin: 5px;
+                border-radius: 5px;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+                font-size: 12px;
+            }
+
+            .tab-button.active {
+                border-left: none;
+                border-bottom-color: #f77f00;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Part 2: Christian Living</h2>
+            <button class="tab-button active" onclick="showTab(1, this)">1. Marriage Standards</button>
+            <button class="tab-button" onclick="showTab(2, this)">2. Legal Marriage</button>
+            <button class="tab-button" onclick="showTab(3, this)">3. Family Roles</button>
+            <button class="tab-button" onclick="showTab(4, this)">4. Respect for Life</button>
+            <button class="tab-button" onclick="showTab(5, this)">5. Protecting Life</button>
+            <button class="tab-button" onclick="showTab(6, this)">6. God's Command on Blood</button>
+            <button class="tab-button" onclick="showTab(7, this)">7. Christian Love</button>
+            <button class="tab-button" onclick="showTab(8, this)">8. Infectious Disease</button>
+            <button class="tab-button" onclick="showTab(9, this)">9. Forgiveness</button>
+            <button class="tab-button" onclick="showTab(10, this)">10. Resolving Conflicts</button>
+            <button class="tab-button" onclick="showTab(11, this)">11. Serious Sins</button>
+            <button class="tab-button" onclick="showTab(12, this)">12. Sexual Immorality</button>
+            <button class="tab-button" onclick="showTab(13, this)">13. Mind-Altering Substances</button>
+            <button class="tab-button" onclick="showTab(14, this)">14. Demonic Practices</button>
+            <button class="tab-button" onclick="showTab(15, this)">15. Confession of Sin</button>
+            <button class="tab-button" onclick="showTab(16, this)">16. Reporting Sin</button>
+            <button class="tab-button" onclick="showTab(17, this)">17. Disfellowshipped Persons</button>
+            <button class="tab-button" onclick="showTab(18, this)">18. Choosing Friends</button>
+            <button class="tab-button" onclick="showTab(19, this)">19. Political Neutrality</button>
+            <button class="tab-button" onclick="showTab(20, this)">20. Obeying Government</button>
+            <button class="tab-button" onclick="showTab(21, this)">21. God's Law vs Human Law</button>
+            <button class="tab-button" onclick="showTab(22, this)">22. Choosing Employment</button>
+            <button class="tab-button" onclick="showTab(23, this)">23. Entertainment Choices</button>
+            <button class="tab-button" onclick="showTab(24, this)">24. Other Religions</button>
+            <button class="tab-button" onclick="showTab(25, this)">25. Celebrations</button>
+            <button class="tab-button" onclick="showTab(26, this)">26. Birthday Celebrations</button>
+            <button class="tab-button" onclick="showTab(27, this)">27. Following Elders</button>
+            <button class="tab-button" onclick="showTab(28, this)">28. Bible Study</button>
+            <button class="tab-button" onclick="showTab(29, this)">29. Meeting Attendance</button>
+            <button class="tab-button" onclick="showTab(30, this)">30. Most Important Work</button>
+            <button class="tab-button" onclick="showTab(31, this)">31. Giving Donations</button>
+            <button class="tab-button" onclick="showTab(32, this)">32. Christian Difficulties</button>
+            <button class="tab-button" onclick="showTab(33, this)">33. Baptism Privilege</button>
+        </div>
+
+        <div class="main-content">
+            <!-- Question 1 -->
+            <div id="tab1" class="tab-content active">
+                <h1 class="question-title">1: What is the Christian standard for marriage? What is the only basis for a Scriptural divorce?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Matthew 19:4-6, 9 (NWT)</div>
+                    <div class="scripture-text">
+                        "Have you not read that the one who created them from the beginning made them male and female and said: 'For this reason a man will leave his father and his mother and will stick to his wife, and the two will be one flesh'? So that they are no longer two, but one flesh. Therefore, what God has yoked together, let no man put apart. . . . Whoever divorces his wife, except on the grounds of sexual immorality, and marries another commits adultery."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        God's standard for marriage is one man and one woman united for life. Marriage is a sacred bond that should not be broken. The only Scriptural grounds for divorce is sexual immorality (adultery), which breaks the marriage covenant and gives the innocent mate the right to divorce and remarry.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div id="tab2" class="tab-content">
+                <h1 class="question-title">2: Why should those living together as husband and wife be legally married? If you are married, are you sure that your marriage is legal and recognized by the government?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Titus 3:1 (NWT)</div>
+                    <div class="scripture-text">
+                        "Continue reminding them to be in subjection and to be obedient to governments and authorities."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians should obey governmental requirements, including legal marriage. Being legally married shows respect for authority and protects both partners legally and socially. It demonstrates that we honor both God's arrangement and human law.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Hebrews 13:4 (NWT)</div>
+                    <div class="scripture-text">
+                        "Let marriage be honorable among all, and let the marriage bed be without defilement, for God will judge sexually immoral people and adulterers."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Marriage should be held in honor and kept pure. Legal marriage protects the honor of the marriage arrangement and ensures that the intimate relationship is within God's approved bounds. It also provides legal protection and recognition for both spouses.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div id="tab3" class="tab-content">
+                <h1 class="question-title">3: What is your role in the family?</h1>
+                
+                <div class="multiple-roles">
+                    <div class="role-title">For Children:</div>
+                    <div class="role-text">Listen to and obey parents, respecting both father and mother's instruction and discipline as part of God's arrangement for the family.</div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Proverbs 1:8 (NWT)</div>
+                    <div class="scripture-text">
+                        "Listen, my son, to the discipline of your father, and do not forsake the instruction of your mother."
+                    </div>
+                </div>
+
+                <div class="multiple-roles">
+                    <div class="role-title">For Husbands:</div>
+                    <div class="role-text">Exercise loving headship following Christ's example of self-sacrificing leadership. Headship is not domination but loving guidance and protection.</div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Ephesians 5:23, 25 (NWT)</div>
+                    <div class="scripture-text">
+                        "A husband is head of his wife just as the Christ is head of the congregation . . . Husbands, continue loving your wives, just as the Christ also loved the congregation."
+                    </div>
+                </div>
+
+                <div class="multiple-roles">
+                    <div class="role-title">For Fathers:</div>
+                    <div class="role-text">Discipline and teach children according to Jehovah's standards, avoiding harsh treatment that would discourage or embitter children.</div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Ephesians 6:4 (NWT)</div>
+                    <div class="scripture-text">
+                        "Fathers, do not be irritating your children, but go on bringing them up in the discipline and admonition of Jehovah."
+                    </div>
+                </div>
+
+                <div class="multiple-roles">
+                    <div class="role-title">For Children:</div>
+                    <div class="role-text">Obey parents in all things that are not contrary to God's law. This obedience pleases God and maintains proper order in the family.</div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Colossians 3:20 (NWT)</div>
+                    <div class="scripture-text">
+                        "You children, be obedient to your parents in everything, for this is well-pleasing to the Lord."
+                    </div>
+                </div>
+
+                <div class="multiple-roles">
+                    <div class="role-title">For Wives:</div>
+                    <div class="role-text">Respect husband's headship and support his leadership in the family. This is part of God's arrangement and contributes to family harmony and order.</div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">1 Peter 3:1 (NWT)</div>
+                    <div class="scripture-text">
+                        "You wives, be in subjection to your husbands."
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div id="tab4" class="tab-content">
+                <h1 class="question-title">4: Why should we show respect for life?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Acts 17:25, 28 (NWT)</div>
+                    <div class="scripture-text">
+                        "[God] gives to all people life and breath and all things. . . . By him we have life and move and exist."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Life comes from God, and we depend on Him for our very existence. Since God is the source and sustainer of life, all life is sacred and should be respected and protected. We are accountable to Him for how we treat the gift of life.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div id="tab5" class="tab-content">
+                <h1 class="question-title">5: Why should we not kill anyone, including an unborn baby?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Exodus 21:22, 23 (NWT)</div>
+                    <div class="scripture-text">
+                        "If men should struggle with each other and they hurt a pregnant woman and . . . if a fatality does occur, then you must give life for life."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        God's law protected even unborn children, showing that life begins in the womb. Taking the life of an unborn child was treated as seriously as taking any other life. This shows God's view of the value of life at all stages of development.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Psalm 139:16 (NWT)</div>
+                    <div class="scripture-text">
+                        "Your eyes even saw me as an embryo; all its parts were written in your book regarding the days when they were formed, before any of them existed."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        God knows and values each person even before birth, while they are still developing in the womb. This shows that unborn children are precious to God and should be protected. He has a plan for each life from conception.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Proverbs 6:16, 17 (NWT)</div>
+                    <div class="scripture-text">
+                        "Jehovah hates . . . hands that shed innocent blood."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        God hates the shedding of innocent blood. This includes taking the life of unborn children, who are completely innocent and defenseless. Murder in any form is detestable to God and violates His law.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div id="tab6" class="tab-content">
+                <h1 class="question-title">6: What is God's command regarding blood?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Acts 15:29 (NWT)</div>
+                    <div class="scripture-text">
+                        "Keep abstaining . . . from blood [and] from what is strangled."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians must abstain from blood in any form, whether eating it or receiving blood transfusions. This command shows respect for the sacredness of life, which blood represents. God views life as sacred and has restricted the use of blood.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div id="tab7" class="tab-content">
+                <h1 class="question-title">7: Why must we love our Christian brothers and sisters?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">John 13:34, 35 (NWT)</div>
+                    <div class="scripture-text">
+                        "I am giving you a new commandment, that you love one another; just as I have loved you, you also love one another. By this all will know that you are my disciples—if you have love among yourselves."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Love among Christians is the identifying mark of true disciples. Jesus commanded this love, and it serves as proof to others that we belong to him. Christian love should mirror the love Jesus showed—sacrificial, unselfish, and unconditional.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div id="tab8" class="tab-content">
+                <h1 class="question-title">8: To avoid transmitting an infectious, potentially fatal disease to others: (a) Why should an infected person not initiate displays of affection, such as hugging and kissing? (b) Why should he not react negatively if some choose not to invite him into their home? (c) Why should a person who may have been exposed to an infectious disease voluntarily choose to have a blood test before beginning a courtship? (d) Why should a person with an infectious disease inform the coordinator of the body of elders before getting baptized?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Romans 13:8-10 (NWT)</div>
+                    <div class="scripture-text">
+                        "Do not owe anything to anyone except to love one another. . . . 'You must love your neighbor as yourself.' Love does not work evil to one's neighbor."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Love motivates us to protect others from harm. If we have an infectious disease, love requires us to take precautions to avoid spreading it to others, even if it means limiting physical contact or social activities. True love considers others' welfare above our own desires.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Philippians 2:4 (NWT)</div>
+                    <div class="scripture-text">
+                        "Look out not only for your own interests, but also for the interests of others."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians should consider how their actions affect others. This means being honest about health conditions and taking appropriate measures to protect fellow believers and the community. Such honesty and consideration demonstrate Christian love.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div id="tab9" class="tab-content">
+                <h1 class="question-title">9: Why does Jehovah expect us to forgive others?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Colossians 3:13 (NWT)</div>
+                    <div class="scripture-text">
+                        "Continue putting up with one another and forgiving one another freely even if anyone has a cause for complaint against another. Just as Jehovah freely forgave you, you must also do the same."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should forgive others because God has forgiven us. Since we have received God's undeserved mercy and forgiveness, we should extend the same kindness to others who wrong us. Forgiveness reflects God's love and mercy in our own lives.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div id="tab10" class="tab-content">
+                <h1 class="question-title">10: What should you do if a brother slanders or defrauds you?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Matthew 18:15-17 (NWT)</div>
+                    <div class="scripture-text">
+                        "If your brother commits a sin, go and reveal his fault between you and him alone. If he listens to you, you have gained your brother. But if he does not listen, take along with you one or two more, so that on the testimony of two or three witnesses every matter may be established. If he does not listen to them, speak to the congregation. If he does not listen even to the congregation, let him be to you just as a man of the nations and as a tax collector."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Jesus outlined a progressive approach to resolving conflicts: first speak privately, then bring witnesses, then involve the congregation. This process aims to restore the relationship while maintaining justice and order. The goal is always reconciliation and restoring brotherly love.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 11 -->
+            <div id="tab11" class="tab-content">
+                <h1 class="question-title">11: How does Jehovah view the following sins?</h1>
+                
+                <div class="sin-list">
+                    <div class="sin-title">Sins that prevent inheritance of God's Kingdom:</div>
+                    <div class="sin-items">
+                        • Sexual immorality<br>
+                        • Use of images in worship (idolatry)<br>
+                        • Homosexuality<br>
+                        • Stealing<br>
+                        • Gambling (greediness)<br>
+                        • Drunkenness
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">1 Corinthians 6:9, 10 (NWT)</div>
+                    <div class="scripture-text">
+                        "Do not be misled. Those who are sexually immoral, idolaters, adulterers, men who submit to homosexual acts, men who practice homosexuality, thieves, greedy people, drunkards, revilers, and extortioners will not inherit God's Kingdom."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        These practices are serious sins that prevent inheritance of God's Kingdom. God views them as incompatible with Christian living and requiring genuine repentance for forgiveness. They represent a rejection of God's standards and must be abandoned by those seeking to serve Him.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 12 -->
+            <div id="tab12" class="tab-content">
+                <h1 class="question-title">12: Regarding sexual immorality, which includes a variety of sexual acts outside of marriage, what are you determined to do?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">1 Corinthians 6:18 (NWT)</div>
+                    <div class="scripture-text">
+                        "Flee from sexual immorality!"
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians must actively avoid sexual immorality by fleeing from situations and temptations that could lead to such behavior. This requires decisive action and firm determination to maintain moral purity. We must not even get close to situations that could compromise our integrity.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 13 -->
+            <div id="tab13" class="tab-content">
+                <h1 class="question-title">13: Why should we abstain from the nonmedical use of addictive or mind-altering substances?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Romans 12:1, 2 (NWT)</div>
+                    <div class="scripture-text">
+                        "Present your bodies as a living sacrifice, holy and acceptable to God, a sacred service with your power of reason. And stop being molded by this system of things, but be transformed by making your mind over, so that you may prove to yourselves the good and acceptable and perfect will of God."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Our bodies and minds should be kept pure as a sacrifice to God. Drug abuse interferes with our ability to think clearly and make good decisions, preventing us from serving God with our full mental capacity. We need clear minds to understand and do God's will.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 14 -->
+            <div id="tab14" class="tab-content">
+                <h1 class="question-title">14: What are some of the demonic practices that God forbids?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Deuteronomy 18:10, 11 (NWT)</div>
+                    <div class="scripture-text">
+                        "There should not be found in you . . . anyone who employs divination, anyone practicing magic, anyone who looks for omens, a sorcerer, anyone binding others with a spell, anyone who consults a spirit medium or a fortune-teller, or anyone who inquires of the dead."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        All forms of spiritism and occult practices are forbidden because they involve contact with demons. These practices are dangerous spiritually and draw people away from dependence on God. They include fortune-telling, magic, séances, and any attempt to communicate with the dead.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 15 -->
+            <div id="tab15" class="tab-content">
+                <h1 class="question-title">15: If a person commits a serious sin and wants to be restored to Jehovah's favor, what should he immediately do?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Psalm 32:5 (NWT)</div>
+                    <div class="scripture-text">
+                        "I confessed my sin to you; I did not cover my error. I said: 'I will confess my transgressions to Jehovah.'"
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        A person who has sinned seriously should confess to God and not try to hide their wrongdoing. This confession should be sincere and accompanied by genuine repentance. Covering sin only makes matters worse.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">James 5:14, 15 (NWT)</div>
+                    <div class="scripture-text">
+                        "Is there anyone sick among you? Let him call the elders of the congregation to him, and let them pray over him, applying oil to him in the name of Jehovah. And the prayer of faith will make the sick one well, and Jehovah will raise him up. Also, if he has committed sins, he will be forgiven."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        For serious sins, the person should also approach the congregation elders for spiritual help and guidance. The elders can provide counsel and prayer to help the person restore their relationship with God. They serve as spiritual physicians.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 16 -->
+            <div id="tab16" class="tab-content">
+                <h1 class="question-title">16: If you know that a fellow Christian has committed a serious sin, what should you do?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Leviticus 5:1 (NWT)</div>
+                    <div class="scripture-text">
+                        "If someone sins because he has heard a public call to testify and he is a witness or has seen or learned about it and he does not report it, then he will answer for his error."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        If we know about serious sin in the congregation, we have a responsibility to report it to the elders. Failing to do so when we have knowledge makes us share in the guilt. This protects the congregation and helps the wrongdoer receive needed assistance.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div id="tab17" class="tab-content">
+                <h1 class="question-title">17: If an announcement is made that someone is no longer one of Jehovah's Witnesses, how should we treat him?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">1 Corinthians 5:11 (NWT)</div>
+                    <div class="scripture-text">
+                        "Stop keeping company with anyone called a brother who is sexually immoral or a greedy person or an idolater or a reviler or a drunkard or an extortioner, not even eating with such a man."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should limit our association with disfellowshipped persons, not socializing or eating with them. This discipline aims to help them realize the seriousness of their actions and encourages repentance. It also protects the congregation's spiritual health.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">2 John 10 (NWT)</div>
+                    <div class="scripture-text">
+                        "If anyone comes to you and does not bring this teaching, do not receive him into your homes or say a greeting to him."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should not welcome those who have been removed from the congregation into our homes or give them friendly greetings, as this could undermine the discipline and seem to condone their behavior. The goal is to help them return to God.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div id="tab18" class="tab-content">
+                <h1 class="question-title">18: Why should your close friends be those who love Jehovah?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Proverbs 13:20 (NWT)</div>
+                    <div class="scripture-text">
+                        "The one walking with the wise will become wise, but the one who has dealings with the stupid will fare badly."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Our close associates influence us significantly. Choosing friends who love God will help us grow in wisdom and spirituality, while bad associations can lead us away from God. We become like those we spend time with.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">1 Corinthians 15:33 (NWT)</div>
+                    <div class="scripture-text">
+                        "Do not be misled. Bad associations spoil useful habits."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Bad associations gradually corrupt good character and habits. We need to be selective about our close friendships to protect our spiritual progress and moral standards. Good associations encourage us in righteous ways.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div id="tab19" class="tab-content">
+                <h1 class="question-title">19: Why are Jehovah's Witnesses politically neutral?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">John 17:16 (NWT)</div>
+                    <div class="scripture-text">
+                        "They are no part of the world, just as I [Jesus] am no part of the world."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians must remain separate from the world's political systems, following Jesus' example. Our citizenship is in God's Kingdom, not in human governments that will be replaced by God's rule. We cannot serve two masters.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div id="tab20" class="tab-content">
+                <h1 class="question-title">20: Why should you obey the government?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Romans 13:1 (NWT)</div>
+                    <div class="scripture-text">
+                        "Let every person be in subjection to the superior authorities, for there is no authority except by God; the existing authorities stand placed in their relative positions by God."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        God allows human governments to exist for maintaining order, so we should obey their laws as long as they don't conflict with God's laws. This shows respect for God's arrangement and helps maintain peace in society.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 21 -->
+            <div id="tab21" class="tab-content">
+                <h1 class="question-title">21: If there is a conflict between a human law and God's law, what would you do?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Acts 5:29 (NWT)</div>
+                    <div class="scripture-text">
+                        "We must obey God as ruler rather than men."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        When human laws conflict with God's commands, we must choose to obey God. Our ultimate allegiance is to God, and His laws take precedence over human laws. We respectfully accept any consequences for this stand.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 22 -->
+            <div id="tab22" class="tab-content">
+                <h1 class="question-title">22: What scriptures can help you to remain separate from the world when choosing a job?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Micah 4:3 (NWT)</div>
+                    <div class="scripture-text">
+                        "Nation will not lift up sword against nation, nor will they learn war anymore."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians should avoid employment that involves military service or weapons manufacturing, as this conflicts with our commitment to peace and non-violence. We follow the principle of beating swords into plowshares.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Revelation 18:4 (NWT)</div>
+                    <div class="scripture-text">
+                        "Get out of her [Babylon the Great], my people, if you do not want to share with her in her sins, and if you do not want to receive part of her plagues."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should avoid jobs that directly support false religion or other practices condemned by God, maintaining our separation from "Babylon the Great" (the world empire of false religion). This includes work in religious institutions that teach false doctrine.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 23 -->
+            <div id="tab23" class="tab-content">
+                <h1 class="question-title">23: What kind of entertainment and recreation will you choose, and what kind will you reject?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Psalm 11:5 (NWT)</div>
+                    <div class="scripture-text">
+                        "Jehovah . . . hates anyone who loves violence."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should avoid entertainment that glorifies violence, since God hates violence and those who love it. Our entertainment choices should reflect godly values and not desensitize us to things God abhors.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Romans 12:9 (NWT)</div>
+                    <div class="scripture-text">
+                        "Abhor what is wicked; cling to what is good."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians should hate what is evil and hold fast to what is good. This principle guides our choices in entertainment, helping us select wholesome recreation that doesn't promote sin or corrupt thinking.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Philippians 4:8 (NWT)</div>
+                    <div class="scripture-text">
+                        "Whatever things are true, whatever things are of serious concern, whatever things are righteous, whatever things are chaste, whatever things are lovable, whatever things are well-spoken-of, whatever things are virtuous, and whatever things are praiseworthy, continue considering these things."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Our entertainment should meet high moral standards—being true, righteous, chaste, lovable, virtuous, and praiseworthy. This helps us focus our minds on uplifting content that builds us up spiritually rather than tearing us down.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 24 -->
+            <div id="tab24" class="tab-content">
+                <h1 class="question-title">24: Why do Jehovah's Witnesses not worship with other religious groups?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">1 Corinthians 10:21 (NWT)</div>
+                    <div class="scripture-text">
+                        "You cannot be partaking of 'the table of Jehovah' and the table of demons."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We cannot participate in both true and false worship. Other religious groups practice false religion, so joining in their worship would compromise our exclusive devotion to Jehovah. True worship must be pure and undiluted.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">2 Corinthians 6:17 (NWT)</div>
+                    <div class="scripture-text">
+                        "'Separate yourselves,' says Jehovah, 'and quit touching the unclean thing'; 'and I will take you in.'"
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        God commands His people to separate from unclean religious practices. Maintaining this separation ensures that God will accept us and that we remain spiritually clean. Religious mixing dilutes pure worship.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 25 -->
+            <div id="tab25" class="tab-content">
+                <h1 class="question-title">25: What principles will help you decide whether to participate in a celebration?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Psalm 106:35, 36 (NWT)</div>
+                    <div class="scripture-text">
+                        "They mingled with the nations and adopted their ways. They kept serving their idols, and these became a snare to them."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should avoid adopting customs that have pagan or idolatrous origins, as these can become spiritual snares that draw us away from pure worship. We must carefully examine the roots of celebrations.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Ecclesiastes 9:5 (NWT)</div>
+                    <div class="scripture-text">
+                        "The dead know nothing at all."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Since the dead are unconscious, celebrations that honor or communicate with the dead are based on false beliefs and should be avoided. This includes holidays like Halloween and Day of the Dead.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">John 17:16 (NWT)</div>
+                    <div class="scripture-text">
+                        "They are no part of the world, just as I am no part of the world."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians must remain separate from worldly celebrations that conflict with Biblical principles or promote values contrary to God's standards. Our celebrations should honor God, not the world.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">1 Peter 4:3 (NWT)</div>
+                    <div class="scripture-text">
+                        "The time that has passed by is sufficient for you to have done the will of the nations when you carried on in acts of brazen conduct, unbridled passions, overdrinking, wild parties, drinking bouts, and lawless idolatries."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should avoid celebrations characterized by excessive drinking, wild behavior, or other conduct that violates Christian principles. Our past worldly conduct should be left behind when we become Christians.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 26 -->
+            <div id="tab26" class="tab-content">
+                <h1 class="question-title">26: How do Bible examples help you decide whether to celebrate birthdays?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Genesis 40:20-22 (NWT)</div>
+                    <div class="scripture-text">
+                        "The third day was Pharaoh's birthday, and he made a feast for all his servants, and he brought out both the chief cupbearer and the chief baker in the presence of his servants. And he returned the chief cupbearer to his post of cupbearer . . . But he hanged the chief baker."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        The Bible's only mention of birthday celebrations involves pagan rulers and ends with someone's execution. This negative association helps Christians understand that birthday celebrations are not practices that please God.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Matthew 14:6-8, 10 (NWT)</div>
+                    <div class="scripture-text">
+                        "When Herod's birthday was being celebrated, the daughter of Herodias danced for the occasion and pleased Herod so much that he promised with an oath to give her whatever she asked. Then she, at her mother's prompting, said: 'Give me here on a platter the head of John the Baptist.' So he sent and had John beheaded in the prison."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Another biblical birthday celebration resulted in the murder of John the Baptist. The consistent negative portrayal of birthday celebrations in Scripture guides Christians to avoid this practice. Both accounts involve violence and death.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 27 -->
+            <div id="tab27" class="tab-content">
+                <h1 class="question-title">27: Why do you want to follow the guidance of the elders?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Hebrews 13:17 (NWT)</div>
+                    <div class="scripture-text">
+                        "Be obedient to those who are taking the lead among you and be submissive, for they are keeping watch over you as those who will render an account, so that they may do this with joy and not with sighing, for this would be damaging to you."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Elders have been appointed to watch over our spiritual welfare and will answer to God for their care of the congregation. Following their guidance protects us spiritually and helps them fulfill their responsibility joyfully. They serve as shepherds under Christ.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 28 -->
+            <div id="tab28" class="tab-content">
+                <h1 class="question-title">28: Why is it important for you and your family to set aside time regularly to read and study the Bible?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Psalm 1:2, 3 (NWT)</div>
+                    <div class="scripture-text">
+                        "His delight is in the law of Jehovah, and he reads His law in an undertone day and night. He will be like a tree planted by streams of water, a tree that produces fruit in its season, the foliage of which does not wither. And everything he does will succeed."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Regular Bible reading brings spiritual nourishment and success. Like a well-watered tree that bears fruit, those who meditate on God's Word daily will flourish spiritually and be productive in God's service. God's Word provides the guidance we need for life.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 29 -->
+            <div id="tab29" class="tab-content">
+                <h1 class="question-title">29: Why do you love attending and participating in the meetings?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Psalm 22:22 (NWT)</div>
+                    <div class="scripture-text">
+                        "I will declare your name to my brothers; in the midst of the congregation I will praise you."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Meetings provide opportunities to praise God and share in worship with fellow believers. This corporate worship fulfills our desire to honor God publicly and encourage our brothers and sisters in the faith.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">Hebrews 10:24, 25 (NWT)</div>
+                    <div class="scripture-text">
+                        "Let us consider one another so as to incite to love and fine works, not forsaking our meeting together, as some have the custom, but encouraging one another, and all the more so as you see the day drawing near."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Meetings help us encourage each other and motivate one another to love and good works. As the end draws near, this mutual encouragement becomes increasingly important for maintaining our faith and spiritual strength.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 30 -->
+            <div id="tab30" class="tab-content">
+                <h1 class="question-title">30: What is the most important work that Jesus has given us to do?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Matthew 28:19, 20 (NWT)</div>
+                    <div class="scripture-text">
+                        "Go, therefore, and make disciples of people of all the nations, baptizing them . . . , teaching them to observe all the things I have commanded you."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        The most important work is making disciples—preaching the good news, helping people learn about God, and teaching them to follow Jesus' commands. This work is urgent and takes priority over other activities. It's our primary mission as Christians.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 31 -->
+            <div id="tab31" class="tab-content">
+                <h1 class="question-title">31: When we make donations to the Kingdom work or help our brothers and sisters, what attitude pleases Jehovah?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Proverbs 3:9 (NWT)</div>
+                    <div class="scripture-text">
+                        "Honor Jehovah with your valuable things."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        We should give to honor God, offering our best and most valuable resources in service to Him. Giving should be motivated by love and respect for God, not by compulsion or for recognition from others.
+                    </div>
+                </div>
+
+                <div class="scripture-block">
+                    <div class="scripture-reference">2 Corinthians 9:7 (NWT)</div>
+                    <div class="scripture-text">
+                        "Let each one do just as he has resolved in his heart, not grudgingly or under compulsion, for God loves a cheerful giver."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        God wants us to give cheerfully and willingly, not reluctantly or because we feel pressured. Our giving should come from the heart and be done with joy. The attitude behind our giving is more important than the amount.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 32 -->
+            <div id="tab32" class="tab-content">
+                <h1 class="question-title">32: What difficulties do Christians expect to experience?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Matthew 5:10-12 (NWT)</div>
+                    <div class="scripture-text">
+                        "Happy are those who have been persecuted for righteousness' sake, since the Kingdom of the heavens belongs to them. Happy are you when people reproach you and persecute you and lyingly say every sort of wicked thing against you for my sake. Rejoice and be overjoyed, since your reward is great in the heavens, for in that way they persecuted the prophets prior to you."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Christians should expect persecution and opposition for their faith. Rather than being discouraged, we can rejoice knowing that such experiences prove our faithfulness and will be rewarded by God. We follow in the footsteps of faithful servants before us.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 33 -->
+            <div id="tab33" class="tab-content">
+                <h1 class="question-title">33: Why is it a special privilege to be baptized as one of Jehovah's Witnesses?</h1>
+                
+                <div class="scripture-block">
+                    <div class="scripture-reference">Jeremiah 15:16 (NWT)</div>
+                    <div class="scripture-text">
+                        "Your word became to me the exultation and the rejoicing of my heart, for your name has been called on me, O Jehovah God."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="explanation-title">Explanation:</div>
+                    <div class="explanation-text">
+                        Bearing God's name is a source of great joy and honor. Being baptized as one of Jehovah's Witnesses means we have the privilege of being called by God's name and representing Him to others. This is the greatest honor possible for any human.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabNumber, clickedButton) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show selected tab content
+            document.getElementById('tab' + tabNumber).classList.add('active');
+
+            // Add active class to clicked button
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            } else {
+                // For initial load, activate the first button
+                document.querySelector('.tab-button').classList.add('active');
+            }
+        }
+
+        // Initialize the first tab as active on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab(1);
+        });
+    </script>
+</body>
+</html>
